@@ -19,12 +19,15 @@ public class DataListActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle arguments = getIntent().getExtras();
+        String name = arguments.get("name").toString();
         setContentView(R.layout.activity_data_list);
         input = (EditText) findViewById(R.id.editTextTextPersonName2);
         list = (ListView) findViewById(R.id.listview1);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<String>());
         list.setAdapter(adapter);
-
+        adapter.add(name);
+        adapter.notifyDataSetChanged();
         list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
